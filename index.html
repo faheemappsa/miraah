@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#E8E1D2">
-<meta name="description" content="مرآة اختبار تفاعلي محايد لفهم أنماط العلاقات والتوافق بطريقة بسيطة وفضولية.">
-<meta property="og:title" content="مرآة | اكتشف نمط العلاقة">
-<meta property="og:description" content="اختبار سريع يعطيك لمحة مجانية ويفتح التقرير الكامل عبر مرآة بلس.">
-<title>مرآة | اكتشف نمط العلاقة</title>
+<meta name="description" content="مرآة تجربة تفاعلية محايدة لقراءة أنماط العلاقات من خلال إشارات التواصل، الصمت، القرب، الاهتمام، والتوتر.">
+<meta property="og:title" content="مرآة | اقرأ النمط">
+<meta property="og:description" content="فيه شيء حاس فيه… بس مو قادر تسميه؟ مرآة ترتب لك الإشارات.">
+<title>مرآة | اقرأ النمط</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,20 +17,28 @@
 :root{
   --bg:#E8E1D2;
   --paper:#FFF7EC;
+  --paper2:#F4EBDD;
   --card:#FFFDF8;
   --ink:#2F2923;
   --muted:#887B70;
+  --softText:#A09386;
   --line:rgba(47,41,35,.10);
   --terra:#D47B5C;
   --terra2:#A95A43;
+  --terraSoft:#F4D4C5;
   --olive:#8E9A82;
   --olive2:#60705F;
+  --oliveSoft:#E4E8DC;
   --gold:#C59A68;
   --dark:#24211D;
+  --white:#FFFFFF;
   --soft:0 12px 32px rgba(65,48,32,.11);
   --shadow:0 24px 70px rgba(65,48,32,.20);
-  --r:30px;
-  --r2:22px;
+  --deep:0 32px 90px rgba(65,48,32,.28);
+  --rXL:38px;
+  --rLG:30px;
+  --rMD:22px;
+  --rSM:16px;
 }
 
 *{
@@ -42,7 +50,7 @@ html,body{
   margin:0;
   height:100%;
   font-family:Tajawal,system-ui,sans-serif;
-  background:radial-gradient(circle at top,#F6EFE2 0%,var(--bg) 70%);
+  background:radial-gradient(circle at top,#F7EFE2 0%,var(--bg) 70%);
   color:var(--ink);
   overflow:hidden;
 }
@@ -70,8 +78,9 @@ button{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 11%,rgba(212,123,92,.18),transparent 27%),
-    radial-gradient(circle at 88% 24%,rgba(142,154,130,.18),transparent 30%);
+    radial-gradient(circle at 12% 10%,rgba(212,123,92,.18),transparent 28%),
+    radial-gradient(circle at 90% 25%,rgba(142,154,130,.18),transparent 30%),
+    radial-gradient(circle at 30% 92%,rgba(197,154,104,.13),transparent 28%);
   pointer-events:none;
 }
 
@@ -82,10 +91,21 @@ button{
   display:none;
   overflow:auto;
   -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.screen::-webkit-scrollbar{
+  display:none;
 }
 
 .screen.active{
   display:block;
+  animation:screenIn .34s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes screenIn{
+  from{opacity:0;transform:translateY(10px) scale(.99)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 .center{
@@ -96,15 +116,15 @@ button{
 }
 
 .logo-mark{
-  width:116px;
-  height:116px;
-  border-radius:38px;
+  width:118px;
+  height:118px;
+  border-radius:39px;
   margin:0 auto 22px;
   background:linear-gradient(145deg,#E7A083,var(--terra2));
   display:grid;
   place-items:center;
   color:white;
-  font-size:3.3rem;
+  font-size:3.2rem;
   box-shadow:var(--shadow);
   animation:float 3.6s ease-in-out infinite;
 }
@@ -118,7 +138,7 @@ button{
 .sub{
   color:var(--muted);
   font-weight:700;
-  line-height:1.8;
+  line-height:1.85;
 }
 
 .top{
@@ -128,6 +148,12 @@ button{
   margin-bottom:16px;
   position:relative;
   z-index:2;
+}
+
+.app-name{
+  font-weight:900;
+  color:var(--ink);
+  letter-spacing:-.02em;
 }
 
 .icon-btn{
@@ -166,27 +192,34 @@ h1,h2,h3,p{
 }
 
 h1{
-  font-size:2rem;
-  line-height:1.18;
-  margin-bottom:10px;
+  font-size:2.06rem;
+  line-height:1.16;
+  margin-bottom:12px;
+  letter-spacing:-.045em;
 }
 
 h2{
-  font-size:1.52rem;
+  font-size:1.55rem;
   line-height:1.32;
+  letter-spacing:-.025em;
 }
 
 p{
-  line-height:1.8;
+  line-height:1.82;
+}
+
+.accent{
+  color:var(--terra2);
 }
 
 .art{
-  height:172px;
+  height:174px;
   border-radius:32px;
   margin:18px 0;
   background:linear-gradient(145deg,#F1D5B7,#DFA081);
   position:relative;
   overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
 }
 
 .sun{
@@ -197,15 +230,16 @@ p{
   height:54px;
   border-radius:50%;
   background:#F4C46F;
+  box-shadow:0 10px 30px rgba(244,196,111,.35);
 }
 
-.moon{
+.arch{
   position:absolute;
   right:28px;
   top:25px;
-  width:136px;
+  width:138px;
   height:96px;
-  border:3px solid rgba(55,42,33,.5);
+  border:3px solid rgba(55,42,33,.48);
   border-bottom:0;
   border-radius:95px 95px 0 0;
 }
@@ -214,7 +248,7 @@ p{
   position:absolute;
   right:36px;
   bottom:30px;
-  width:110px;
+  width:112px;
   height:86px;
   background:#B87358;
   clip-path:polygon(50% 0,100% 100%,0 100%);
@@ -222,7 +256,7 @@ p{
 }
 
 .mount.two{
-  right:120px;
+  right:122px;
   width:92px;
   height:66px;
   background:#D7B18B;
@@ -250,6 +284,22 @@ p{
   transform:rotate(-12deg);
 }
 
+.chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0 14px;
+}
+
+.chip{
+  border-radius:999px;
+  background:#FFF3E7;
+  color:var(--olive2);
+  padding:7px 12px;
+  font-weight:900;
+  font-size:.78rem;
+}
+
 .btn{
   width:100%;
   border:0;
@@ -260,6 +310,10 @@ p{
   color:#fff;
   background:linear-gradient(145deg,var(--terra),var(--terra2));
   box-shadow:0 14px 30px rgba(212,123,92,.28);
+}
+
+.btn:active{
+  transform:scale(.985);
 }
 
 .btn.secondary{
@@ -278,13 +332,6 @@ p{
   gap:12px;
 }
 
-.rel-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:18px;
-}
-
 .card{
   border:1px solid var(--line);
   background:rgba(255,255,255,.84);
@@ -295,30 +342,64 @@ p{
   overflow:hidden;
 }
 
-.rel{
-  min-height:130px;
-  text-align:right;
+.card b{
+  display:block;
+  color:var(--ink);
 }
 
-.emoji{
-  width:50px;
-  height:50px;
+.card small{
+  color:var(--muted);
+  font-weight:700;
+  line-height:1.7;
+}
+
+.rel-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+
+.choice{
+  min-height:158px;
+  text-align:right;
+  transition:.18s;
+}
+
+.choice:active{
+  transform:translateY(-3px) scale(.99);
+  background:#FFF7EE;
+}
+
+.glyph{
+  width:52px;
+  height:52px;
   border-radius:19px;
   background:#F8EADC;
   display:grid;
   place-items:center;
-  font-size:1.5rem;
+  font-size:1.2rem;
+  font-weight:900;
+  color:var(--terra2);
   margin-bottom:12px;
+  border:1px solid rgba(212,123,92,.1);
 }
 
-.rel b,.card b{
-  display:block;
+.choice-title{
+  font-weight:900;
+  line-height:1.35;
 }
 
-.rel span,.card small{
+.choice-title .accent{
+  display:inline;
+}
+
+.micro{
+  font-size:.79rem;
   color:var(--muted);
-  font-weight:700;
-  line-height:1.65;
+  font-weight:800;
+  text-align:center;
+  margin-top:14px;
 }
 
 .steps{
@@ -349,7 +430,14 @@ p{
   border-radius:999px;
   padding:7px 13px;
   font-weight:900;
-  margin-bottom:14px;
+  margin-bottom:12px;
+}
+
+.axis{
+  font-size:.79rem;
+  color:var(--olive2);
+  font-weight:900;
+  margin-bottom:8px;
 }
 
 .answers{
@@ -368,10 +456,9 @@ p{
   color:var(--ink);
 }
 
-.answer.selected{
-  background:linear-gradient(145deg,#E7A087,var(--terra));
-  color:white;
-  border-color:transparent;
+.answer:active{
+  transform:scale(.99);
+  background:#FFF4EB;
 }
 
 .progress{
@@ -403,6 +490,7 @@ p{
   padding:7px 14px;
   font-weight:900;
   font-size:.8rem;
+  margin-bottom:12px;
 }
 
 .score{
@@ -410,7 +498,7 @@ p{
   height:132px;
   border-radius:50%;
   margin:14px auto;
-  background:conic-gradient(var(--terra) 0 72%,#DED5CA 72%);
+  background:conic-gradient(var(--terra) 0 var(--score),#DED5CA var(--score) 100%);
   display:grid;
   place-items:center;
 }
@@ -424,6 +512,38 @@ p{
   place-items:center;
   font-size:1.8rem;
   font-weight:900;
+}
+
+.axis-bars{
+  display:grid;
+  gap:10px;
+  margin:12px 0 0;
+}
+
+.axis-row{
+  display:grid;
+  gap:6px;
+}
+
+.axis-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:.83rem;
+  font-weight:900;
+}
+
+.bar{
+  height:8px;
+  background:#E4DACC;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--olive),var(--terra));
+  border-radius:999px;
 }
 
 .insight{
@@ -442,6 +562,23 @@ p{
   background:var(--terra);
 }
 
+.insight-label{
+  color:var(--terra2);
+  font-weight:900;
+  font-size:.82rem;
+  margin-bottom:7px;
+}
+
+.why{
+  margin-top:8px;
+  padding:10px 12px;
+  border-radius:18px;
+  background:#FFF4E8;
+  color:var(--muted);
+  font-weight:800;
+  line-height:1.7;
+}
+
 .locked{
   filter:saturate(.55);
   background:rgba(255,255,255,.58);
@@ -451,7 +588,7 @@ p{
   position:absolute;
   left:14px;
   top:14px;
-  background:#2f2a25;
+  background:#2F2A25;
   color:white;
   border-radius:999px;
   padding:6px 10px;
@@ -460,7 +597,11 @@ p{
 }
 
 .paywall{
-  background:linear-gradient(145deg,#2d2924,#171512);
+  background:linear-gradient(145deg,#2D2924,#171512);
+  color:white;
+}
+
+.paywall b{
   color:white;
 }
 
@@ -472,6 +613,7 @@ p{
   font-size:2.2rem;
   font-weight:900;
   color:#F2BD80;
+  margin:4px 0 14px;
 }
 
 .code-row{
@@ -503,7 +645,7 @@ p{
 }
 
 .share-card{
-  background:linear-gradient(145deg,#2d2924,#171512);
+  background:linear-gradient(145deg,#2D2924,#171512);
   color:white;
   text-align:center;
   border-radius:34px;
@@ -518,14 +660,29 @@ p{
   letter-spacing:.14em;
 }
 
-.qr{
+.share-card h2{
+  color:white;
+}
+
+.share-card p{
+  color:rgba(255,255,255,.78);
+}
+
+.qrbox{
   width:88px;
   height:88px;
   border-radius:16px;
   background:#fff;
   margin:16px auto 8px;
-  padding:6px;
-  object-fit:cover;
+  padding:12px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:4px;
+}
+
+.qrbox i{
+  background:#2F2923;
+  border-radius:2px;
 }
 
 .actions{
@@ -600,65 +757,77 @@ p{
       <div>
         <div class="logo-mark">🪞</div>
         <div class="brand">مرآة</div>
-        <p class="sub">اكتشف النمط الخفي في علاقتك خلال دقيقة</p>
+        <p class="sub">اقرأ ما لا يقال… بهدوء</p>
       </div>
     </div>
   </section>
 
   <section class="screen" id="home">
     <div class="top">
-      <button class="icon-btn">⋯</button>
-      <b>مرآة</b>
-      <button class="icon-btn" onclick="show('home')">⌂</button>
+      <button class="icon-btn" aria-label="menu">⋯</button>
+      <b class="app-name">مرآة</b>
+      <button class="icon-btn" onclick="show('home')" aria-label="home">⌂</button>
     </div>
 
     <div class="hero">
-      <h1>وش النمط اللي بينكم؟</h1>
-      <p class="sub">اختبار تفاعلي محايد يساعدك تفهم طريقة التعامل، نقاط القرب، ومناطق التوتر بدون أحكام.</p>
+      <h1>فيه شيء حاس فيه… <span class="accent">بس مو قادر تسميه؟</span></h1>
+
+      <p class="sub">
+        مرآة تساعدك تقرأ القرب، الصمت، التغيّر، والاهتمام…
+        وتحوّل الإشارات المتفرقة إلى نمط أوضح.
+      </p>
 
       <div class="art">
         <i class="sun"></i>
-        <i class="moon"></i>
+        <i class="arch"></i>
         <i class="mount"></i>
         <i class="mount two"></i>
         <i class="tree"></i>
         <i class="path"></i>
       </div>
 
-      <button class="btn" onclick="show('relation')">ابدأ الاختبار الآن</button>
-      <p class="hint">النتيجة للتأمل وفهم أنماط التعامل وليست تشخيصًا نفسيًا.</p>
+      <div class="chips">
+        <span class="chip">بدون أسماء</span>
+        <span class="chip">بدون أحكام</span>
+        <span class="chip">قراءة هادئة</span>
+      </div>
+
+      <button class="btn" onclick="show('choose')">ابدأ القراءة</button>
+      <p class="hint">مرآة لا تقرر بدلًا عنك… لكنها ترتب لك الصورة.</p>
     </div>
 
     <div class="grid" style="margin-top:16px">
       <div class="card">
-        <b>لماذا مرآة؟</b>
-        <small>يعطيك 3 لمحات مجانية، ثم يفتح التقرير الكامل عبر مرآة بلس.</small>
+        <b>ما بين السطور</b>
+        <small>أحيانًا التفاصيل الصغيرة تقول أكثر من الكلام.</small>
       </div>
 
       <div class="card">
-        <b>السعر التجريبي</b>
-        <small>تفعيل كامل لمدة أسبوعين بـ 19.97 ريال فقط.</small>
+        <b>قراءة أولى</b>
+        <small>تتعامل مع السلوك المتكرر، لا مع النوايا المخفية.</small>
       </div>
     </div>
   </section>
 
-  <section class="screen" id="relation">
+  <section class="screen" id="choose">
     <div class="top">
       <button class="icon-btn" onclick="show('home')">→</button>
-      <b>نوع العلاقة</b>
+      <b class="app-name">بداية القراءة</b>
       <span></span>
     </div>
 
-    <h2>من تريد فهمه؟</h2>
-    <p class="sub">اختر العلاقة، والخطاب في مرآة محايد ويناسب الجميع.</p>
+    <h2>وش تبغى <span class="accent">تفهم؟</span></h2>
+    <p class="sub">اختر أقرب موقف في بالك… ومرآة ترتب لك الإشارات بدون أحكام.</p>
 
-    <div class="rel-grid" id="relations"></div>
+    <div class="rel-grid" id="choices"></div>
+
+    <p class="micro">ما تحتاج تشرح القصة… اختر الإحساس الأقرب.</p>
   </section>
 
   <section class="screen" id="quiz">
     <div class="top">
-      <button class="icon-btn" onclick="show('relation')">→</button>
-      <b>الاختبار</b>
+      <button class="icon-btn" onclick="show('choose')">→</button>
+      <b class="app-name">قراءة النمط</b>
       <span id="qCount"></span>
     </div>
 
@@ -666,6 +835,7 @@ p{
 
     <div class="card q-card">
       <span class="q-number" id="qNumber"></span>
+      <div class="axis" id="axisName"></div>
       <h2 id="qTitle"></h2>
       <div class="answers" id="answers"></div>
       <div class="progress"><span id="bar"></span></div>
@@ -675,7 +845,7 @@ p{
   <section class="screen" id="result">
     <div class="top">
       <button class="icon-btn" onclick="show('home')">⌂</button>
-      <b>نتيجتك</b>
+      <b class="app-name">قراءة مرآة</b>
       <span></span>
     </div>
 
@@ -686,115 +856,171 @@ p{
 <script>
 const WA = '966556445919';
 const ACCESS_CODE = 'MIRA1977';
-const site = 'https://faheemappsa.github.io/miraah/';
+const SITE_URL = 'https://faheemappsa.github.io/miraah/';
 
 let state = {
-  rel:null,
+  scenario:null,
   answers:[],
   q:0,
-  unlocked:localStorage.getItem('miraah_plus_until') > Date.now()
+  unlocked:Number(localStorage.getItem('miraah_plus_until') || 0) > Date.now()
 };
 
-const relations = [
-  ['partner','💍','شريك الحياة','زوج / زوجة / خطيب / خطيبة'],
-  ['crush','💫','شخص يهمك','إعجاب أو علاقة غير واضحة'],
-  ['friend','🤝','صديق / صديقة','قرب، غموض، أو تغير تعامل'],
-  ['work','💼','زميل / مدير','علاقة عمل تحتاج فهم'],
-  ['helper','🏠','عاملة / عامل','أسلوب تعامل يومي'],
-  ['self','🧭','أنا ونفسي','افهم نمطك أنت أولًا']
+const scenarios = [
+  {
+    id:'unclear-close',
+    glyph:'ق',
+    title:'شخص قريب… بس مو واضح',
+    desc:'فيه قرب، لكن الإشارات تلخبطك.'
+  },
+  {
+    id:'sudden-change',
+    glyph:'ت',
+    title:'تغيّر فجأة',
+    desc:'كان واضح… ثم صار أبعد أو أهدأ.'
+  },
+  {
+    id:'confusing-silence',
+    glyph:'ص',
+    title:'صمت يربكك',
+    desc:'ما تعرف هل هو هدوء، تجاهل، أو رسالة.'
+  },
+  {
+    id:'intermittent-interest',
+    glyph:'م',
+    title:'اهتمام متقطع',
+    desc:'يقرب أحيانًا… ويختفي أحيانًا.'
+  },
+  {
+    id:'work-pressure',
+    glyph:'ع',
+    title:'علاقة عمل متعبة',
+    desc:'مدير، زميل، أو شخص يؤثر على يومك.'
+  },
+  {
+    id:'self-pattern',
+    glyph:'ذ',
+    title:'أفهم نفسي أولًا',
+    desc:'اكتشف نمطك في القرب، الصمت، وردات الفعل.'
+  }
 ];
 
 const questions = [
-  'كيف يكون التواصل غالبًا؟',
-  'وقت الخلاف، ماذا يحدث؟',
-  'كيف يظهر الاهتمام؟',
-  'هل تشعر أن العلاقة واضحة؟',
-  'ما أكثر شيء يتكرر بينكم؟',
-  'كيف تتعامل مع الصمت؟',
-  'هل الطرف الآخر يبادر؟',
-  'ما شعورك بعد التواصل معه؟'
+  {
+    axis:'طريقة التواصل',
+    q:'لما يصير تواصل بينكم، وش الأقرب؟',
+    o:['واضح ومباشر','موجود لكنه متقطع','غامض ويتركك تفكر كثير'],
+    key:'clarity'
+  },
+  {
+    axis:'تكرار الصمت',
+    q:'إذا صار صمت، كيف تحسه غالبًا؟',
+    o:['مساحة طبيعية','صمت يحتاج تفسير','صمت يربكك ويضغط عليك'],
+    key:'silence'
+  },
+  {
+    axis:'شكل الاهتمام',
+    q:'الاهتمام عنده/عندها يظهر كيف؟',
+    o:['واضح بالفعل أو الكلام','يظهر أحيانًا ويختفي أحيانًا','نادر أو غير ثابت'],
+    key:'interest'
+  },
+  {
+    axis:'القرب والمسافة',
+    q:'بعد لحظة قرب واضحة، وش يتكرر؟',
+    o:['القرب يستمر','يصير قرب ثم مسافة','تختلط الإشارات بسرعة'],
+    key:'distance'
+  },
+  {
+    axis:'وقت التوتر',
+    q:'إذا صار موقف مزعج، وش النمط الأقرب؟',
+    o:['توضيح ثم تهدئة','انسحاب وانتظار','تصعيد أو حساسية'],
+    key:'tension'
+  },
+  {
+    axis:'إحساسك بعد التواصل',
+    q:'بعد ما تتواصل معه/معها، وش تحس غالبًا؟',
+    o:['راحة ووضوح','فضول وترقب','استنزاف ومراقبة'],
+    key:'safety'
+  },
+  {
+    axis:'الحدود والتوقعات',
+    q:'هل العلاقة واضحة من ناحية الدور والحدود؟',
+    o:['واضحة غالبًا','تحتاج توضيح','غير واضحة وتسبب توتر'],
+    key:'boundaries'
+  },
+  {
+    axis:'تكرار النمط',
+    q:'هل هذا الشيء يتكرر أو مجرد موقف عابر؟',
+    o:['يتكرر بوضوح','يتكرر أحيانًا','غير واضح حتى الآن'],
+    key:'repeat'
+  }
 ];
 
-const opts = [
-  ['واضح ومباشر','متقطع لكنه موجود','غامض وصعب القراءة'],
-  ['نقاش ثم تهدئة','انسحاب وصمت','تصعيد أو حساسية'],
-  ['أفعال أكثر من كلام','كلام جميل أكثر','قليل وغير ثابت'],
-  ['واضحة غالبًا','بين الوضوح والغموض','مربكة'],
-  ['قرب ثم مسافة','تفهم وراحة','سوء فهم'],
-  ['أنتظر','أبادر','أتوتر'],
-  ['غالبًا نعم','أحيانًا','نادرًا'],
-  ['راحة','فضول','استنزاف']
-];
-
-const freeInsights = [
-  'بينكم مساحة جذب واضحة، لكن طريقة التعبير ليست دائمًا بنفس اللغة. هذا يصنع قربًا أحيانًا وحيرة أحيانًا أخرى.',
-  'أقوى نقطة في العلاقة هي وجود اهتمام غير مباشر. الطرف الآخر قد لا يشرح كثيرًا، لكنه يترك إشارات تحتاج قراءة هادئة.',
-  'منطقة التوتر الأساسية هي التوقعات. كل طرف ينتظر من الآخر أسلوبًا محددًا، بينما الحقيقة أن النمط مختلف لا أكثر.'
-];
-
-const lockedInsights = [
-  'طريقة التعامل المناسبة خطوة بخطوة حسب النمط.',
-  'الرسالة المناسبة التي يمكن إرسالها بدون ضغط.',
-  'نقطة الضعف الخفية في العلاقة.',
-  'توقع مسار العلاقة خلال الفترة القادمة.',
-  'بطاقة مشاركة جاهزة للسوشل ميديا مع QR.'
+const lockedItems = [
+  'الخريطة الأعمق لطريقة التعامل خطوة بخطوة.',
+  'الجملة المناسبة التي يمكن قولها بدون ضغط.',
+  'نقطة الضعف الخفية في النمط.',
+  'توقع مسار العلاقة إذا استمر السلوك نفسه.',
+  'بطاقة مشاركة جاهزة للسوشل ميديا.'
 ];
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  if(id === 'relation') renderRelations();
+  if(id === 'choose') renderChoices();
   if(id === 'quiz') renderQuiz();
   if(id === 'result') renderResult();
 }
 
-function toast(t){
-  let e = document.getElementById('toast');
-  e.textContent = t;
-  e.classList.add('show');
-  setTimeout(() => e.classList.remove('show'), 1800);
+function toast(text){
+  const el = document.getElementById('toast');
+  el.textContent = text;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 1700);
 }
 
-setTimeout(() => show('home'), 1400);
+setTimeout(() => show('home'), 1150);
 
-function renderRelations(){
-  document.getElementById('relations').innerHTML = relations.map(r => `
-    <button class="card rel" onclick="pickRel('${r[0]}')">
-      <div class="emoji">${r[1]}</div>
-      <b>${r[2]}</b>
-      <span>${r[3]}</span>
+function renderChoices(){
+  document.getElementById('choices').innerHTML = scenarios.map(item => `
+    <button class="card choice" onclick="pickScenario('${item.id}')">
+      <div class="glyph">${item.glyph}</div>
+      <div class="choice-title">${item.title}</div>
+      <span>${item.desc}</span>
     </button>
   `).join('');
 }
 
-function pickRel(id){
-  state.rel = id;
+function pickScenario(id){
+  state.scenario = scenarios.find(s => s.id === id);
   state.answers = [];
   state.q = 0;
-  show('quiz');
+  toast('تم… بنقرأ النمط بهدوء');
+  setTimeout(() => show('quiz'), 360);
 }
 
 function renderQuiz(){
-  let q = state.q;
+  const i = state.q;
+  const item = questions[i];
 
-  document.getElementById('qCount').textContent = `${q + 1}/${questions.length}`;
-  document.getElementById('qNumber').textContent = `سؤال ${q + 1}`;
-  document.getElementById('qTitle').textContent = questions[q];
+  document.getElementById('qCount').textContent = `${i + 1}/${questions.length}`;
+  document.getElementById('qNumber').textContent = `سؤال ${i + 1}`;
+  document.getElementById('axisName').textContent = item.axis;
+  document.getElementById('qTitle').textContent = item.q;
 
-  document.getElementById('steps').innerHTML = questions.map((_,i) => `
-    <i class="dot ${i <= q ? 'on' : ''}"></i>
+  document.getElementById('steps').innerHTML = questions.map((_,idx) => `
+    <i class="dot ${idx <= i ? 'on' : ''}"></i>
   `).join('');
 
-  document.getElementById('bar').style.width = ((q + 1) / questions.length * 100) + '%';
+  document.getElementById('bar').style.width = ((i + 1) / questions.length * 100) + '%';
 
-  document.getElementById('answers').innerHTML = opts[q].map((a,i) => `
-    <button class="answer" onclick="answer(${i})">${a}</button>
+  document.getElementById('answers').innerHTML = item.o.map((answer,idx) => `
+    <button class="answer" onclick="answerQuestion(${idx})">${answer}</button>
   `).join('');
 }
 
-function answer(i){
-  state.answers[state.q] = i;
+function answerQuestion(value){
+  state.answers[state.q] = value;
 
   if(state.q < questions.length - 1){
     state.q++;
@@ -804,29 +1030,137 @@ function answer(i){
   }
 }
 
-function score(){
-  let s = state.answers.reduce((a,b) => a + (b === 0 ? 12 : b === 1 ? 8 : 5), 0);
-  return Math.min(94, Math.max(54, s));
+function axisScores(){
+  const scores = {};
+
+  questions.forEach((q,idx) => {
+    const v = state.answers[idx];
+    scores[q.key] = v === 0 ? 84 : v === 1 ? 60 : 36;
+  });
+
+  return scores;
+}
+
+function overallScore(){
+  const values = Object.values(axisScores());
+  return Math.round(values.reduce((a,b) => a + b, 0) / values.length);
+}
+
+function patternName(){
+  const s = axisScores();
+
+  if(s.interest >= 60 && s.distance <= 60 && s.silence <= 60) return 'اهتمام متقطع';
+  if(s.silence <= 42 && s.clarity <= 60) return 'صمت يربكك';
+  if(s.distance <= 60 && s.tension <= 60) return 'قرب مع مسافة';
+  if(s.safety <= 45) return 'علاقة تستنزف انتباهك';
+  if(s.clarity >= 76 && s.safety >= 70) return 'قرب يحتاج لغة أوضح';
+
+  return 'قرب مع قراءة حذرة';
+}
+
+function strongestSignal(){
+  const s = axisScores();
+
+  if(s.silence <= 42) return 'الصمت هو الإشارة الأعلى في قراءتك. ليس لأنه يعني شيئًا واحدًا دائمًا، بل لأنه يترك مساحة كبيرة للتفسير.';
+  if(s.interest <= 60 && s.distance <= 60) return 'الاهتمام يظهر، لكنه لا يستمر بنفس الوضوح. هذا يصنع شعورًا بالقرب ثم التراجع.';
+  if(s.tension <= 42) return 'وقت التوتر يكشف النمط أكثر من وقت الهدوء. طريقة التعامل مع الخلاف هي الإشارة الأوضح.';
+  if(s.safety <= 45) return 'إحساسك بعد التواصل يحمل جزءًا مهمًا من القراءة. العلاقة لا تُقاس بما يحدث فقط، بل بما تتركه داخلك.';
+
+  return 'الإشارة الأقوى أن العلاقة ليست فارغة، لكنها تحتاج قراءة أهدأ لطريقة التعبير.';
+}
+
+function reasonText(){
+  const s = axisScores();
+
+  if(s.clarity <= 60 && s.silence <= 60) {
+    return 'إجاباتك تميل إلى تواصل موجود لكنه غير مكتمل، وصمت يحتاج تفسير. هذا لا يعني حكمًا على الطرف الآخر، لكنه يوضح سبب الحيرة.';
+  }
+
+  if(s.interest <= 60 && s.distance <= 60) {
+    return 'ظهر النمط لأن الاهتمام والقرب لا يأتون بنفس الثبات. أحيانًا تكون الإشارة قريبة، ثم تأتي بعدها مسافة تربك القراءة.';
+  }
+
+  if(s.tension <= 60) {
+    return 'سبب ظهور النمط مرتبط بردة الفعل وقت التوتر. العلاقة قد تبدو عادية، لكن وقت الضغط يكشف طريقة التعامل الحقيقية.';
+  }
+
+  return 'القراءة ظهرت من تداخل أكثر من إشارة: طريقة التواصل، شكل الاهتمام، إحساسك بعد التواصل، وهل النمط يتكرر أو لا.';
+}
+
+function calmStep(){
+  const s = axisScores();
+
+  if(s.silence <= 42) return 'لا تطلب وضوحًا وقت الصمت نفسه. انتظر لحظة أهدأ، وراقب هل الصمت يتكرر كنمط أم يظهر فقط مع الضغط.';
+  if(s.interest <= 60) return 'لا تقرأ الاهتمام من موقف واحد. اجمع التكرار: هل يبادر؟ هل يعود؟ هل الفعل يطابق الكلام؟';
+  if(s.tension <= 60) return 'وقت الخلاف لا تدخل بنبرة اتهام. ابدأ بوصف السلوك لا النية: “لاحظت أن بيننا صمت بعد كل موقف”.';
+  if(s.safety <= 45) return 'خفف المراقبة. العلاقة التي تستنزفك تحتاج حدودًا أوضح قبل أي قرار عاطفي.';
+
+  return 'خذ القراءة كبداية. لا تحكم من نتيجة واحدة، لكن استخدمها لترتيب الصورة والسؤال بهدوء.';
+}
+
+function axisBars(){
+  const s = axisScores();
+
+  const labels = [
+    ['clarity','التواصل'],
+    ['silence','الصمت'],
+    ['interest','الاهتمام'],
+    ['tension','التوتر'],
+    ['safety','الشعور بعد التواصل'],
+    ['repeat','تكرار النمط']
+  ];
+
+  return `
+    <div class="card">
+      <b>وش قرأت مرآة؟</b>
+      <small>النتيجة مبنية على إشارات سلوكية من إجاباتك، وليست حكمًا على النوايا.</small>
+
+      <div class="axis-bars">
+        ${labels.map(([key,label]) => `
+          <div class="axis-row">
+            <div class="axis-label">
+              <span>${label}</span>
+              <span>${s[key]}%</span>
+            </div>
+            <div class="bar"><i style="width:${s[key]}%"></i></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
 }
 
 function renderResult(){
-  let sc = score();
+  const score = overallScore();
+  const pattern = patternName();
+
+  document.querySelector('.score')?.style?.setProperty('--score', `${score}%`);
 
   document.getElementById('resultWrap').innerHTML = `
     <div class="result-head">
-      <span class="badge">لمحة مجانية</span>
-      <h1>نمط العلاقة: قرب مع قراءة حذرة</h1>
-      <div class="score"><div>${sc}%</div></div>
-      <p class="sub">ظهرت لك أول 3 تحليلات. التقرير الكامل يفتح باقي التفاصيل لمدة أسبوعين.</p>
+      <span class="badge">قراءة أولى</span>
+      <h1>النمط الأقرب: ${pattern}</h1>
+      <div class="score" style="--score:${score}%"><div>${score}%</div></div>
+      <p class="sub">هذه القراءة مبنية على طريقة التواصل، الصمت، الاهتمام، التوتر، وإحساسك بعد التواصل.</p>
     </div>
 
     <div class="grid">
-      ${freeInsights.map((x,i) => `
-        <div class="card insight">
-          <b>تحليل ${i + 1}</b>
-          <small>${x}</small>
-        </div>
-      `).join('')}
+      ${axisBars()}
+
+      <div class="card insight">
+        <div class="insight-label">الإشارة الأقوى</div>
+        <b>${strongestSignal()}</b>
+      </div>
+
+      <div class="card insight">
+        <div class="insight-label">سبب ظهور النمط</div>
+        <b>${reasonText()}</b>
+      </div>
+
+      <div class="card insight">
+        <div class="insight-label">خطوتك الأهدأ</div>
+        <b>${calmStep()}</b>
+      </div>
 
       ${state.unlocked ? fullReport() : lockedReport()}
     </div>
@@ -837,7 +1171,7 @@ function lockedReport(){
   return `
     <div class="card paywall">
       <b>مرآة بلس</b>
-      <p class="sub">فعّل التحليل الكامل لمدة أسبوعين</p>
+      <p class="sub">إذا لمستك القراءة، افتح العمق الكامل لمدة أسبوعين.</p>
       <div class="price">19.97 <span style="font-size:1rem">ريال</span></div>
 
       <button class="btn" onclick="whatsapp()">اطلب التفعيل عبر واتساب</button>
@@ -847,13 +1181,13 @@ function lockedReport(){
         <button onclick="unlock()">فتح</button>
       </div>
 
-      <p class="sub" style="font-size:.82rem">بعد التحويل نرسل لك كود التفعيل. الكود الحالي موحد لقياس الطلبات.</p>
+      <p class="sub" style="font-size:.82rem">بعد التحويل يصلك كود التفعيل. الكود الحالي موحد لقياس الطلبات.</p>
     </div>
 
-    ${lockedInsights.map(x => `
+    ${lockedItems.map(item => `
       <div class="card locked">
         <span class="lock-badge">Plus</span>
-        <b>🔒 ${x}</b>
+        <b>🔒 ${item}</b>
         <small>افتح مرآة بلس لعرض هذا الجزء.</small>
       </div>
     `).join('')}
@@ -861,18 +1195,38 @@ function lockedReport(){
 }
 
 function fullReport(){
-  return lockedInsights.slice(0,4).map((x,i) => `
+  const pattern = patternName();
+
+  return `
     <div class="card insight">
-      <b>تحليل بلس ${i + 4}</b>
-      <small>${x} بناءً على إجاباتك، الأفضل التعامل بهدوء ووضوح دون ملاحقة أو أحكام سريعة.</small>
+      <div class="insight-label">الخريطة الأعمق</div>
+      <b>نمط ${pattern} يحتاج قراءة السلوك المتكرر، لا ردة فعل واحدة. ركّز على: هل يعود التواصل؟ هل يتكرر الصمت؟ هل الاهتمام فعل أم مجرد كلام؟</b>
     </div>
-  `).join('') + shareCard();
+
+    <div class="card insight">
+      <div class="insight-label">الجملة المناسبة</div>
+      <b>“لاحظت أن بيننا إشارات متقطعة، وأبغى أفهم بهدوء بدون ضغط.”</b>
+      <div class="why">الجملة قوية لأنها تصف السلوك ولا تتهم النية.</div>
+    </div>
+
+    <div class="card insight">
+      <div class="insight-label">نقطة الضعف الخفية</div>
+      <b>أكبر خطأ هنا هو مطاردة الوضوح في لحظة توتر. هذا غالبًا يزيد المسافة بدل ما يقرّب الصورة.</b>
+    </div>
+
+    <div class="card insight">
+      <div class="insight-label">مسار العلاقة</div>
+      <b>إذا تكرر نفس النمط بدون توضيح، ستبقى العلاقة في دائرة قرب ثم حيرة. التغيير يبدأ من لحظة كلام هادئة ومحددة.</b>
+    </div>
+
+    ${shareCard()}
+  `;
 }
 
 function unlock(){
-  let c = (document.getElementById('code')?.value || '').trim().toUpperCase();
+  const code = (document.getElementById('code')?.value || '').trim().toUpperCase();
 
-  if(c === ACCESS_CODE){
+  if(code === ACCESS_CODE){
     localStorage.setItem('miraah_plus_until', Date.now() + 12096e5);
     state.unlocked = true;
     toast('تم فتح مرآة بلس');
@@ -883,29 +1237,95 @@ function unlock(){
 }
 
 function whatsapp(){
-  let msg = encodeURIComponent('أبغى تفعيل مرآة بلس لمدة أسبوعين بسعر 19.97 ريال');
+  const msg = encodeURIComponent('أبغى تفعيل مرآة بلس لمدة أسبوعين بسعر 19.97 ريال');
   location.href = `https://wa.me/${WA}?text=${msg}`;
 }
 
+function qrBlocks(){
+  const active = [0,1,4,5,7,10,12,15,17,20,21,24];
+  return Array.from({length:25}).map((_,i) => `
+    <i style="opacity:${active.includes(i) ? 1 : .14}"></i>
+  `).join('');
+}
+
 function shareCard(){
-  let qr = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(site);
+  const pattern = patternName();
 
   return `
-    <div class="share-card">
+    <div class="share-card" id="shareCard">
       <div class="mini">MIRAAH</div>
-      <h2>قرب مع قراءة حذرة</h2>
-      <p>مرآة كشفت أن بينكم إشارات واضحة، لكن طريقة التعبير تحتاج فهمًا أهدأ.</p>
-      <img class="qr" src="${qr}" alt="QR">
-      <small>اكتشف نمط علاقتك عبر مرآة</small>
+      <h2>${pattern}</h2>
+      <p>مرآة كشفت أن الصورة لا تحتاج حكمًا سريعًا… بل قراءة أهدأ للإشارات المتكررة.</p>
+      <div class="qrbox">${qrBlocks()}</div>
+      <small>اكتشف نمطك عبر مرآة</small>
     </div>
 
     <div class="actions">
-      <button class="btn secondary" onclick="navigator.share ? navigator.share({title:'مرآة',text:'اكتشف نمط علاقتك عبر مرآة',url:site}) : toast('خذ لقطة شاشة للبطاقة')">مشاركة</button>
-      <button class="btn dark" onclick="show('home')">إعادة الاختبار</button>
+      <button class="btn secondary" onclick="shareMiraah()">مشاركة</button>
+      <button class="btn dark" onclick="saveCard()">حفظ البطاقة</button>
     </div>
 
-    <p class="hint">للتصدير: خذ لقطة شاشة للبطاقة وشاركها. QR يوجّه للموقع.</p>
+    <p class="hint">البطاقة مصممة للسكرين شوت والمشاركة في السوشل ميديا.</p>
   `;
+}
+
+function shareMiraah(){
+  if(navigator.share){
+    navigator.share({
+      title:'مرآة',
+      text:'اكتشف نمط علاقتك عبر مرآة',
+      url:SITE_URL
+    });
+  }else{
+    toast('خذ لقطة شاشة للبطاقة');
+  }
+}
+
+function saveCard(){
+  const pattern = patternName();
+
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#2D2924"/>
+        <stop offset="100%" stop-color="#171512"/>
+      </linearGradient>
+      <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#D47B5C"/>
+        <stop offset="100%" stop-color="#C59A68"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" rx="80" fill="url(#bg)"/>
+    <circle cx="180" cy="180" r="220" fill="#D47B5C" opacity=".14"/>
+    <circle cx="920" cy="1180" r="260" fill="#8E9A82" opacity=".12"/>
+    <text x="540" y="220" text-anchor="middle" font-size="62" font-weight="900" fill="#C59A68" font-family="Arial">MIRAAH</text>
+    <text x="540" y="390" text-anchor="middle" font-size="72" font-weight="900" fill="#FFFFFF" font-family="Arial">${pattern}</text>
+    <foreignObject x="160" y="470" width="760" height="300">
+      <div xmlns="http://www.w3.org/1999/xhtml" dir="rtl" style="font-family:Arial; color:rgba(255,255,255,.82); font-size:44px; line-height:1.8; text-align:center;">
+        مرآة كشفت أن الصورة لا تحتاج حكمًا سريعًا… بل قراءة أهدأ للإشارات المتكررة.
+      </div>
+    </foreignObject>
+    <rect x="430" y="850" width="220" height="220" rx="34" fill="#FFF7EC"/>
+    <rect x="460" y="880" width="34" height="34" fill="#2F2923"/>
+    <rect x="504" y="880" width="34" height="34" fill="#2F2923"/>
+    <rect x="592" y="880" width="34" height="34" fill="#2F2923"/>
+    <rect x="460" y="924" width="34" height="34" fill="#2F2923"/>
+    <rect x="548" y="924" width="34" height="34" fill="#2F2923"/>
+    <rect x="460" y="1012" width="34" height="34" fill="#2F2923"/>
+    <rect x="504" y="1012" width="34" height="34" fill="#2F2923"/>
+    <rect x="592" y="1012" width="34" height="34" fill="#2F2923"/>
+    <text x="540" y="1145" text-anchor="middle" font-size="36" fill="rgba(255,255,255,.55)" font-family="Arial">${SITE_URL}</text>
+    <text x="540" y="1225" text-anchor="middle" font-size="42" font-weight="700" fill="#FFFFFF" font-family="Arial">اكتشف نمطك عبر مرآة</text>
+  </svg>`;
+
+  const blob = new Blob([svg], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'miraah-card.svg';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 </body>
